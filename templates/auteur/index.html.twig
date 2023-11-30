@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les auteurs !{% endblock %}
+
+{% block body %}
+<section class="w-100 d-flex justify-content-center">
+    <ul class="list-group w-50 ms-4 mt-4">
+        <li class="list-group-item active" aria-current="true">Les auteurs</li>
+        {% if auteurs %}
+        {% for auteur in auteurs %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ auteur.nom }}
+                {{ auteur.prenom }}
+                <div>
+                    <a type="button" class="btn btn-light bi bi-pencil-fill"
+                       href="{{ path("app-auteur-edit", {id: auteur.id}) }}"></a>
+                    <a type="button" class="btn btn-light bi bi-trash bg-danger"
+                       href="{{ path("app-auteur-delete", {id: auteur.id}) }}"></a>
+                </div>
+            </li>
+        {% endfor %}
+        {% else %}
+            <li class="list-group-item d-flex justify-content-between">Aucun auteur</li>
+        {% endif %}
+    <a type="button" class="btn btn-light mt-4" href="{{ path("app-auteur-create") }}">Ajouter un auteur</a>
+    </ul>
+</section>
+{% endblock %}

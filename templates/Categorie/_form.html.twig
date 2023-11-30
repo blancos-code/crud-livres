@@ -1,0 +1,14 @@
+<div class="container-fluid mt-4">
+    <div class="card w-50 mx-auto p-3">
+        {{ form_start(form) }}
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-column">
+                {{ form_label(form.nom, 'Nom de la catégorie ', {'attr' : {'class': 'mt-4'}}) }}
+                {{ form_widget(form.nom) }}
+            </div>
+            <button type="submit" class="btn btn-success bi bi-floppy mt-4">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+</div>

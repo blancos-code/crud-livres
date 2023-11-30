@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les livres!{% endblock %}
+
+{% block body %}
+
+    <section class="w-100 d-flex justify-content-center">
+        <ul class="list-group w-50 mt-4">
+            <li class="list-group-item active" aria-current="true">Les livres</li>
+            {% if livres %}
+            {% for livre in livres %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        {{ livre.titre }}
+                        par
+                        {{ livre.auteur.nom }}
+                        {{ livre.auteur.prenom }}
+                        <div>
+                            {% for categorie in livre.categories %}
+                                <span class="badge rounded-pill bg-light text-dark">{{ categorie.nom }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <a type="button" class="btn btn-light bi bi-pencil-fill" href="{{ path("app-livre-edit", {id: livre.id})}}"></a>
+                        <a type="button" class="btn btn-light bi bi-trash bg-danger" href="{{ path("app-livre-delete", {id: livre.id})}}"></a>
+                    </div>
+                </li>
+            {% endfor %}
+            {% else %}
+                <li class="list-group-item d-flex justify-content-between">Aucun livre</li>
+            {% endif %}
+
+            <a type="button" class="btn btn-light mt-4" href="{{ path("app-livre-create")}}">Ajouter un livre</a>
+        </ul>
+    </section>
+
+{% endblock %}
