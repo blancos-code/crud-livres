@@ -7,3 +7,8 @@ composer install
 
 ## Configuration
 Mettre les identifiants de la base de données dans le `.env` ou le `.env.local`
+
+## Lancement
+```bash
+symfony server:start
+```
