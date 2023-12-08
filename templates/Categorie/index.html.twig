@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les catégories!{% endblock %}
+
+{% block body %}
+<section class="w-100 d-flex justify-content-center">
+    <ul class="list-group w-50 ms-4 mt-4">
+        <li class="list-group-item active" aria-current="true">Les catégories</li>
+        {% if categories %}
+        {% for category in categories %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ category.nom }}
+                <div>
+                    <a type="button" class="btn btn-light bi bi-pencil-fill"
+                       href="{{ path("app-categorie-edit", {id: category.id}) }}"></a>
+                    <a type="button" class="btn btn-light bi bi-trash bg-danger"
+                       href="{{ path("app-categorie-delete", {id: category.id}) }}"></a>
+                </div>
+            </li>
+        {% endfor %}
+        {% else %}
+            <li class="list-group-item d-flex justify-content-between">Aucune catégorie</li>
+        {% endif %}
+    <a type="button" class="btn btn-light mt-4" href="{{ path("app-categorie-create") }}">Ajouter une catégorie</a>
+    </ul>
+</section>
+{% endblock %}
